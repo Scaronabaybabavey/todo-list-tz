@@ -1,0 +1,229 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f3f4f8;
+  --card: #ffffff;
+  --text: #1f2330;
+  --muted: #8a8fa3;
+  --border: #e3e5ec;
+  --accent: #5b5bd6;
+  --accent-hover: #4a4ac4;
+  --danger: #e5484d;
+  --radius: 12px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.app {
+  width: 100%;
+  max-width: 520px;
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(31, 35, 48, 0.08);
+  padding: 28px;
+  align-self: flex-start;
+}
+
+.app__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.app__header h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.app__counter {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Форма добавления */
+.add-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.add-form__input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.add-form__input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.15);
+}
+
+.add-form__input.is-error {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(229, 72, 77, 0.15);
+}
+
+.add-form__btn {
+  padding: 12px 18px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.add-form__btn:hover {
+  background: var(--accent-hover);
+}
+
+/* Фильтры */
+.filters {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.filters__btn {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.filters__btn:hover {
+  color: var(--text);
+}
+
+.filters__btn.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Список */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--border);
+  animation: appear 0.2s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.task__check {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.task__text {
+  flex: 1;
+  word-break: break-word;
+  cursor: pointer;
+}
+
+.task.is-done .task__text {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.task__delete {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.6;
+  transition: background 0.15s, color 0.15s, opacity 0.15s;
+}
+
+.task:hover .task__delete {
+  opacity: 1;
+}
+
+.task__delete:hover {
+  background: rgba(229, 72, 77, 0.1);
+  color: var(--danger);
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px 0;
+  margin: 0;
+}
+
+.app__footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.clear-btn {
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 14px;
+  padding: 4px 0;
+}
+
+.clear-btn:hover:not(:disabled) {
+  color: var(--danger);
+}
+
+.clear-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+@media (max-width: 480px) {
+  body { padding: 16px 10px; }
+  .app { padding: 20px 16px; }
+  .app__header { flex-direction: column; gap: 4px; }
+}
